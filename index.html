@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Finance Forge</title>
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+  />
+  <!-- Bootstrap Icons (optional) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+  />
+  <style>
+    /* Basic styling and custom classes */
+
+    /* Navigation Brand Image */
+    .navbar-brand img {
+      height: 40px;
+      width: auto;
+    }
+
+    /* Carousel Image Settings */
+    .carousel-item img {
+      height: 70vh;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .navbar-nav .nav-link {
+      margin-right: 1rem;
+    }
+
+    /* General Sections Spacing */
+    .section-spacing {
+      padding: 4rem 0;
+    }
+
+    /* Service Cards Hover Effect */
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Footer Links */
+    footer a {
+      text-decoration: none;
+      color: #ccc;
+    }
+    footer a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* Featured Offers & Exchange Rates Section */
+    .featured-section {
+      background-color: #ffe4e4; /* Light pink */
+      border-radius: 10px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+    .cta-box {
+      background-color: #007bff; /* Blue box 1 */
+      color: #fff;
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.3s ease;
+    }
+    .cta-box:hover {
+      background-color: #0056b3;
+    }
+    .cta-box-2 {
+      background-color: #d63a3a; /* Deeper red box 2 */
+      color: #fff;
+      border-radius: 6px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.3s ease;
+    }
+    .cta-box-2:hover {
+      background-color: #a82929;
+    }
+    .cta-box h5, .cta-box-2 h5 {
+      font-weight: 600;
+    }
+    .cta-box a, .cta-box-2 a {
+      color: #fff;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .cta-box a:hover, .cta-box-2 a:hover {
+      text-decoration: underline;
+    }
+    .cta-img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+      opacity: 0.9;
+      transition: transform 0.3s ease;
+    }
+    .cta-img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Table styling in featured section */
+    .rates-table th {
+      font-weight: 600;
+      background-color: #f8f9fa;
+    }
+
+    /* Tools Section Additional Styling */
+    .tools-section h4 {
+      font-weight: 600;
+    }
+
+    /* Contact Form "Dark Card" styling */
+    .dark-card {
+      background-color: #2f2f2f; 
+      color: #fff;
+      border-radius: 6px;
+      padding: 1.5rem;
+    }
+    .contact-card {
+      background: linear-gradient(to right, #004080, #0059b3); /* Blue Gradient */
+      opacity: 0.95;
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+    }
+
+    .contact-card input, .contact-card textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .contact-card button {
+      background-color: white;
+      color: #dc3545;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .contact-card button:hover {
+      background-color: #ffebeb;
+      color: #c82333;
+    }
+
+    /* Digital Banking Section Styling */
+    .digital-services {
+      background: linear-gradient(to right, #004080, #0059b3); /* Blue Gradient */
+      padding: 4rem 0;
+    }
+
+    .digital-services h2 {
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    .digital-services p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .digital-services ul li {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    /* Digital Services Image */
+    .digital-image {
+      max-width: 70%;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .digital-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Financial Tools Section Enhancements */
+    .financial-tool-card {
+      background-color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .financial-tool-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .financial-tool-card .card-header {
+      background-color: #f8f9fa;
+      border-bottom: none;
+      border-radius: 10px 10px 0 0;
+      padding: 1rem;
+      text-align: center;
+    }
+    .financial-tool-card .card-header i {
+      font-size: 2rem;
+      color: #007bff;
+    }
+    .financial-tool-card .card-body {
+      padding: 1.5rem;
+    }
+    .financial-tool-card .form-label {
+      font-weight: 500;
+    }
+    .financial-tool-card .btn {
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .financial-tool-card .btn-primary {
+      background-color: #007bff;
+      border: none;
+    }
+    .financial-tool-card .btn-primary:hover {
+      background-color: #0056b3;
+    }
+    .financial-tool-card .btn-success {
+      background-color: #28a745;
+      border: none;
+    }
+    .financial-tool-card .btn-success:hover {
+      background-color: #1e7e34;
+    }
+    .financial-tool-card .alert-info {
+      background-color: #d1ecf1;
+      color: #0c5460;
+    }
+
+    /* Contact Us Section Enhancements */
+    .contact-tool-card {
+      background-color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .contact-tool-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .contact-tool-card .card-header {
+      background-color: #f8f9fa;
+      border-bottom: none;
+      border-radius: 10px 10px 0 0;
+      padding: 1rem;
+      text-align: center;
+    }
+    .contact-tool-card .card-header i {
+      font-size: 2rem;
+      color: #dc3545;
+    }
+    .contact-tool-card .card-body {
+      padding: 1.5rem;
+    }
+    .contact-tool-card .form-label {
+      font-weight: 500;
+    }
+    .contact-tool-card .btn-outline-light {
+      border: 2px solid #fff;
+      color: #fff;
+      background-color: transparent;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+    .contact-tool-card .btn-outline-light:hover {
+      background-color: #fff;
+      color: #dc3545;
+      border-color: #dc3545;
+    }
+
+    /* Flag Icon Styling */
+    .flag-icon {
+      width: 20px;
+      height: auto;
+    }
+
+    /* Responsive Enhancements */
+    @media (max-width: 767px) {
+      .cta-img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+    <div class="container">
+      <!-- Brand with Bank Icon and Text -->
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <i class="bi bi-bank me-2"></i> <!-- Bank Icon -->
+        <span class="fw-bold">Finance Forge</span>
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#digitalBanking">Digital Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#featuredOffersRates">Offers & Rates</a></li>
+          <li class="nav-item"><a class="nav-link" href="#servicesSection">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#tools">Tools</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contactSection">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Carousel -->
+  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button 
+        type="button" 
+        data-bs-target="#heroCarousel" 
+        data-bs-slide-to="0" 
+        class="active" 
+        aria-current="true" 
+        aria-label="Slide 1"
+      ></button>
+      <button 
+        type="button" 
+        data-bs-target="#heroCarousel" 
+        data-bs-slide-to="1" 
+        aria-label="Slide 2"
+      ></button>
+      <button 
+        type="button" 
+        data-bs-target="#heroCarousel" 
+        data-bs-slide-to="2" 
+        aria-label="Slide 3"
+      ></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img 
+          src="assets/carasoule-1.png" 
+          class="d-block w-100" 
+          alt="Banner 1"
+        >
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Welcome to Finance Forge</h5>
+          <p>Expand Your Financial Horizons</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img 
+          src="assets/carasoule-2.png" 
+          class="d-block w-100" 
+          alt="Banner 2"
+        >
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Tailored Financial Solutions</h5>
+          <p>Mortgages, Savings, and Investment Services for Everyone</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img 
+          src="assets/carasoule-3.png" 
+          class="d-block w-100" 
+          alt="Banner 3"
+        >
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Invest & Grow</h5>
+          <p>Secure Your Future with Expert Budgeting and Debt Management</p>
+        </div>
+      </div>
+    </div>
+    <button 
+      class="carousel-control-prev" 
+      type="button" 
+      data-bs-target="#heroCarousel" 
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button 
+      class="carousel-control-next" 
+      type="button" 
+      data-bs-target="#heroCarousel" 
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!-- Digital Services Section -->
+  <section id="digitalBanking" class="digital-services">
+    <div class="container">
+      <h2 class="mb-4 text-center text-white">Digital Banking Services</h2>
+      <div class="row align-items-center">
+        <!-- Left Column: Text & Features -->
+        <div class="col-md-6">
+          <p class="text-white">
+            Our secure digital banking platform enables you to manage your financial tasks 
+            anytime, anywhere. Easily transfer funds, pay bills, and monitor investments 
+            with just a few clicks.
+          </p>
+          <ul class="list-unstyled">
+            <li class="d-flex align-items-center mb-2">
+              <i class="bi bi-credit-card-2-front text-warning fs-4 me-2"></i>
+              <span class="text-white">Online Mortgage & Loan Management</span>
+            </li>
+            <li class="d-flex align-items-center mb-2">
+              <i class="bi bi-shield-lock-fill text-success fs-4 me-2"></i>
+              <span class="text-white">Secure Virtual Cards & Transfers</span>
+            </li>
+            <li class="d-flex align-items-center mb-2">
+              <i class="bi bi-lock-fill text-info fs-4 me-2"></i>
+              <span class="text-white">Encryption & Multi-Factor Authentication</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Right Column: Image with Animation -->
+        <div class="col-md-6 text-center">
+          <img 
+            src="assets/mobile.png" 
+            alt="Digital Banking Services" 
+            class="img-fluid rounded shadow-lg digital-image"
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Offers & Exchange Rates -->
+  <section id="featuredOffersRates" class="featured-section">
+    <div class="container">
+      <h2 class="mb-4 text-center">Today's Currency Rate</h2>
+
+      <div class="row">
+        <!-- Left side: two big CTA boxes -->
+        <div class="col-md-4 mb-4">
+          <!-- CTA Box 1 -->
+          <div class="cta-box">
+            <h5>Consolidate Debt Efficiently</h5>
+            <p>Combine multiple debts into a single, manageable loan.</p>
+            <a href="#">Learn More <i class="bi bi-arrow-right-circle"></i></a>
+            <!-- Small relevant image in bottom-right corner -->
+            <img 
+              src="assets/budget.png" 
+              alt="Debt Icon" 
+              class="cta-img"
+            >
+          </div>
+          <!-- CTA Box 2 -->
+          <div class="cta-box-2">
+            <h5>Exclusive Savings Plans</h5>
+            <p>Earn higher returns with our flexible saving accounts.</p>
+            <a href="#">Explore Offers <i class="bi bi-arrow-right-circle"></i></a>
+            <!-- Small relevant image in bottom-right corner -->
+            <img 
+              src="assets/saving-vs-investing.webp" 
+              alt="Savings Icon" 
+              class="cta-img"
+            >
+          </div>
+        </div>
+        <!-- Right side: Currency Exchange Rates Table -->
+        <div class="col-md-8">
+          <div class="p-3 bg-white rounded">
+            <div class="table-responsive">
+              <table class="table rates-table">
+                <thead>
+                  <tr>
+                    <th>Currency</th>
+                    <th>Unit</th>
+                    <th>Buying</th>
+                    <th>Selling</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><img src="https://flagcdn.com/w20/us.png" alt="US" class="me-1 flag-icon"> US Dollar</td>
+                    <td>1</td>
+                    <td>1.00</td>
+                    <td>1.02</td>
+                  </tr>
+                  <tr>
+                    <td><img src="https://flagcdn.com/w20/gb.png" alt="GB" class="me-1 flag-icon"> Pound Sterling</td>
+                    <td>1</td>
+                    <td>0.80</td>
+                    <td>0.82</td>
+                  </tr>
+                  <!-- Nepalese Rupee Added Here -->
+                  <tr>
+                    <td><img src="https://flagcdn.com/w20/np.png" alt="NP" class="me-1 flag-icon"> Nepalese Rupee</td>
+                    <td>1</td>
+                    <td>0.0073</td>
+                    <td>0.0074</td>
+                  </tr>
+                  <tr>
+                    <td><img src="https://flagcdn.com/w20/au.png" alt="AU" class="me-1 flag-icon"> Australian Dollar</td>
+                    <td>1</td>
+                    <td>1.35</td>
+                    <td>1.37</td>
+                  </tr>
+                  <tr>
+                    <td><img src="https://flagcdn.com/w20/jp.png" alt="JP" class="me-1 flag-icon"> Japanese Yen</td>
+                    <td>100</td>
+                    <td>0.72</td>
+                    <td>0.73</td>
+                  </tr>
+                  <tr>
+                    <td><img src="https://flagcdn.com/w20/br.png" alt="BR" class="me-1 flag-icon"> Brazilian Real</td>
+                    <td>1</td>
+                    <td>0.19</td>
+                    <td>0.20</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <a href="#" class="text-danger fw-semibold">View Full Rates <i class="bi bi-arrow-right-circle"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="servicesSection" class="section-spacing">
+    <div class="container">
+      <h2 class="mb-4">Our Services</h2>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- Card 1 -->
+        <div class="col">
+          <div class="card service-card h-100">
+            <img 
+              src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" 
+              class="card-img-top" 
+              alt="Mortgage Advice"
+            >
+            <div class="card-body">
+              <h5 class="card-title">Mortgage Advice</h5>
+              <p class="card-text">
+                Find the right mortgage plan suited to your budget and long-term goals.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col">
+          <div class="card service-card h-100">
+            <img 
+              src="assets/budget.png"
+              class="card-img-top" 
+              alt="Savings & Investments"
+            >
+            <div class="card-body">
+              <h5 class="card-title">Savings & Investments</h5>
+              <p class="card-text">
+                Explore comprehensive plans to grow your finances with personalized advice.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col">
+          <div class="card service-card h-100">
+            <img 
+              src="assets/saving-vs-investing.webp" 
+              class="card-img-top" 
+              alt="Debt Consolidation"
+            >
+            <div class="card-body">
+              <h5 class="card-title">Budgeting & Debt Consolidation</h5>
+              <p class="card-text">
+                Streamline outgoings and simplify multiple debts into one lower-interest loan.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div><!-- row end -->
+    </div><!-- container end -->
+  </section>
+
+  <!-- Financial Tools Section (Enhanced) -->
+  <section id="tools" class="section-spacing tools-section">
+    <div class="container">
+      <h2 class="mb-4 text-center">Financial Tools</h2>
+      <p class="text-muted text-center mb-5">
+        Utilize our tools to manage your finances effectively. Convert currencies and calculate your investment growth effortlessly.
+      </p>
+      <div class="row g-5">
+        <!-- Currency Converter (Left) -->
+        <div class="col-md-6">
+          <div class="financial-tool-card">
+            <div class="card-header">
+              <i class="bi bi-cash-coin"></i>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title text-center">Currency Converter</h4>
+              <p class="card-text text-muted">
+                Convert between major currencies using our up-to-date exchange rates.
+              </p>
+              <form id="currency-converter-form" class="row gy-3">
+                <div class="col-12 position-relative">
+                  <label for="currencyAmount" class="form-label">Amount</label>
+                  <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="currencyAmount"
+                      placeholder="Enter amount"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6 position-relative">
+                  <label for="fromCurrency" class="form-label">From</label>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <img id="fromFlag" src="https://flagcdn.com/w20/us.png" alt="USD" class="flag-icon">
+                    </span>
+                    <select class="form-select" id="fromCurrency">
+                      <option value="USD" selected>USD - US Dollar</option>
+                      <option value="GBP">GBP - Pound Sterling</option>
+                      <option value="EUR">EUR - Euro</option>
+                      <option value="JPY">JPY - Japanese Yen</option>
+                      <option value="BRL">BRL - Brazilian Real</option>
+                      <option value="NPR">NPR - Nepalese Rupee</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6 position-relative">
+                  <label for="toCurrency" class="form-label">To</label>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <img id="toFlag" src="https://flagcdn.com/w20/gb.png" alt="GBP" class="flag-icon">
+                    </span>
+                    <select class="form-select" id="toCurrency">
+                      <option value="USD">USD - US Dollar</option>
+                      <option value="GBP" selected>GBP - Pound Sterling</option>
+                      <option value="EUR">EUR - Euro</option>
+                      <option value="JPY">JPY - Japanese Yen</option>
+                      <option value="BRL">BRL - Brazilian Real</option>
+                      <option value="NPR">NPR - Nepalese Rupee</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary w-100">
+                    <i class="bi bi-arrow-repeat me-2"></i> Convert
+                  </button>
+                </div>
+              </form>
+              <div 
+                class="alert alert-info mt-3 text-center" 
+                id="currencyResult" 
+                style="display: none;"
+              >
+                <img id="resultFlag" src="" alt="Result Flag" class="flag-icon me-2"> 
+                <span id="convertedAmount"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Investment Calculator (Right) -->
+        <div class="col-md-6">
+          <div class="financial-tool-card">
+            <div class="card-header">
+              <i class="bi bi-piggy-bank"></i>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title text-center">Investment Calculator</h4>
+              <p class="card-text text-muted">
+                Estimate the future value of your investments with our compound interest calculator.
+              </p>
+              <form id="investment-form" class="row gy-3">
+                <div class="col-md-6">
+                  <label for="principalAmount" class="form-label">
+                    Principal Amount
+                  </label>
+                  <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="principalAmount"
+                      placeholder="Enter principal"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="timeInYears" class="form-label">Time (Years)</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="timeInYears"
+                    placeholder="Enter years"
+                    required
+                  />
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-success w-100">
+                    <i class="bi bi-calculator me-2"></i> Calculate
+                  </button>
+                </div>
+              </form>
+              <div 
+                class="alert alert-info mt-3 text-center" 
+                id="investmentResult" 
+                style="display: none;"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div><!-- row end -->
+    </div><!-- container end -->
+  </section>
+
+  <!-- Contact Us Section (Enhanced) -->
+  <section id="contactSection" class="section-spacing">
+    <div class="container">
+      <h2 class="mb-4 text-center">Contact Finance Forge</h2>
+      <p class="text-muted text-center mb-5">
+        If you have questions about mortgages, savings plans, or consolidating debt, 
+        feel free to reach out. We keep our clients' data secure and handle personal 
+        information under strict confidentiality.
+      </p>
+      <div class="row g-5">
+        <!-- Company Info + Map (Left) -->
+        <div class="col-md-6">
+          <div class="contact-tool-card">
+            <div class="card-header">
+              <i class="bi bi-telephone-forward"></i>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title text-center">Get in Touch</h4>
+              <p class="card-text text-muted text-center">
+                Reach out to us through any of the methods below or use the contact form to send us a direct message.
+              </p>
+              <div class="mb-3">
+                <h5><i class="bi bi-telephone-forward me-2"></i> Phone</h5>
+                <p>+977 9843937012</p>
+              </div>
+              <div class="mb-3">
+                <h5><i class="bi bi-envelope me-2"></i> Email</h5>
+                <p>info@financeforge.com</p>
+              </div>
+              <div class="mb-3">
+                <h5><i class="bi bi-geo-alt-fill me-2"></i> Address</h5>
+                <p>Koteshwor- 32, Kathmandu, Nepal 44600</p>
+              </div>
+              <!-- Google Map Below Details -->
+              <div class="ratio ratio-16x9 mt-3">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4255.149407666304!2d85.34653887604276!3d27.68873902631093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198bf9bd6c7d%3A0xb9e9193ddf9eda4f!2sISMT%20College!5e1!3m2!1sen!2snp!4v1738138808102!5m2!1sen!2snp"
+                  style="border:0;"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Contact Form (Right) -->
+        <div class="col-md-6">
+          <div class="contact-tool-card">
+            <div class="card-header">
+              <i class="bi bi-chat-dots"></i>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title text-center">Send Us a Message</h4>
+              <form>
+                <div class="mb-3">
+                  <label for="contactName" class="form-label">Name</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="contactName" 
+                    required 
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="contactEmail" class="form-label">Email</label>
+                  <input 
+                    type="email" 
+                    class="form-control" 
+                    id="contactEmail" 
+                    required 
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="contactSubject" class="form-label">Subject</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="contactSubject" 
+                    required 
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="contactMessage" class="form-label">Message</label>
+                  <textarea
+                    class="form-control"
+                    id="contactMessage"
+                    rows="4"
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn btn-outline-light w-100">
+                  <i class="bi bi-send me-2"></i> Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-danger text-white text-center py-4 mt-5">
+    <div class="container">
+      <p class="mb-2">&copy; 2025 Finance Forge. All rights reserved.</p>
+      <a href="#">Privacy Policy</a> | 
+      <a href="#">Terms & Conditions</a> | 
+      <a href="#">FAQs</a>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS (for the responsive navbar & carousel) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  ></script>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
